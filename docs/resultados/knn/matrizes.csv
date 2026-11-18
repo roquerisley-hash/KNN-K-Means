@@ -1,0 +1,13 @@
+configuracao;perfil_real;CASUAL;REGULAR;RANQUEADO
+euclidiana_normalizada;CASUAL;9;0;0
+euclidiana_normalizada;REGULAR;0;5;0
+euclidiana_normalizada;RANQUEADO;0;1;15
+euclidiana_original;CASUAL;7;2;0
+euclidiana_original;REGULAR;0;5;0
+euclidiana_original;RANQUEADO;0;2;14
+manhattan_normalizada;CASUAL;9;0;0
+manhattan_normalizada;REGULAR;0;5;0
+manhattan_normalizada;RANQUEADO;0;2;14
+manhattan_original;CASUAL;7;2;0
+manhattan_original;REGULAR;0;5;0
+manhattan_original;RANQUEADO;0;2;14

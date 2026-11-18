@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 public class KNN {
@@ -68,8 +68,7 @@ public class KNN {
             vizinhos.add(new Vizinho(treino.get(i), valor));
         }
 
-        vizinhos.sort(Comparator.comparingDouble(Vizinho::getDistancia)
-                .thenComparingInt(v -> v.getJogador().getId()));
+        Collections.sort(vizinhos);
         return List.copyOf(vizinhos.subList(0, k));
     }
 
@@ -89,7 +88,7 @@ public class KNN {
         }
     }
 
-    public static class Vizinho {
+    public static final class Vizinho implements Comparable<Vizinho> {
         private final Jogador jogador;
         private final double distancia;
 
@@ -104,6 +103,17 @@ public class KNN {
 
         public double getDistancia() {
             return distancia;
+        }
+
+        @Override
+        public int compareTo(Vizinho outro) {
+            if (distancia < outro.distancia) {
+                return -1;
+            }
+            if (distancia > outro.distancia) {
+                return 1;
+            }
+            return Integer.compare(jogador.getId(), outro.jogador.getId());
         }
     }
 }

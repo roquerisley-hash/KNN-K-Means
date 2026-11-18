@@ -1,0 +1,13 @@
+{
+    "java.project.sourcePaths": [
+        "Projeto Integrado Verdadeiro/src",
+        "Projeto Integrado Verdadeiro/test"
+    ],
+    "java.project.outputPath": "Projeto Integrado Verdadeiro/bin",
+    "java.project.referencedLibraries": [
+        "Projeto Integrado Verdadeiro/lib/h2-2.4.240.jar"
+    ],
+    "java.autobuild.enabled": false,
+    "java.debug.settings.forceBuildBeforeLaunch": true,
+    "java.jdt.ls.vmargs": "-Xms64m -Xmx256m -XX:ActiveProcessorCount=2"
+}

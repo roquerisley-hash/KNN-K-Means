@@ -1,0 +1,12 @@
+**/bin/
+/Projeto Integrado Verdadeiro/resultados/
+*.class
+*.mv.db
+*.trace.db
+*.log
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+__pycache__/

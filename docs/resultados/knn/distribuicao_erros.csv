@@ -1,0 +1,4 @@
+perfil_real;total_teste;acertos;erros;taxa_erro_percentual
+CASUAL;9;9;0;0.000000
+REGULAR;5;5;0;0.000000
+RANQUEADO;16;15;1;6.250000

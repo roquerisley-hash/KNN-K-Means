@@ -1,0 +1,86 @@
+Número de linhas: 150
+
+CONSULTA 1: jogadores por perfil
+
+Número de jogadores do perfil CASUAL: 50
+Número de jogadores do perfil REGULAR: 50
+Número de jogadores do perfil RANQUEADO: 50
+
+CONSULTA 2: média de cada coluna numérica por perfil
+
+PERFIL    | HORAS SEMANAIS | PARTIDAS SEMANAIS | GASTO MENSAL | TAXA DE VITÓRIAS |
+   CASUAL |           4,85 |             10,08 |        67,69 |            41,35 |
+RANQUEADO |          26,39 |             75,02 |       124,75 |            59,87 |
+  REGULAR |          14,29 |             33,60 |        89,76 |            50,91 |
+
+CONSULTA 3: jogadores com mais de 20 horas semanais e taxa de vitórias acima de 55%, ordenados por taxa de vitórias
+
+APELIDO          | PERFIL    | HORAS SEMANAIS | TAXA DE VITÓRIAS |
+    LuckyGolem89 | RANQUEADO |          23,50 |            79,80 |
+  SneakyWizard53 | RANQUEADO |          28,60 |            77,40 |
+   TurboBandit61 | RANQUEADO |          22,50 |            73,20 |
+     SilentFox79 | RANQUEADO |          29,50 |            72,30 |
+    ShadowTank11 | RANQUEADO |          24,60 |            71,90 |
+    GoldenRaven3 | RANQUEADO |          36,40 |            68,80 |
+ SneakyPhoenix13 | RANQUEADO |          30,50 |            68,80 |
+    NeonWizard66 | RANQUEADO |          21,40 |            66,80 |
+    ShadowWolf96 | RANQUEADO |          25,90 |            66,60 |
+     LunarWolf46 | RANQUEADO |          47,80 |            66,50 |
+    TurboGhost92 | RANQUEADO |          23,10 |            66,30 |
+    LunarRobot97 | RANQUEADO |          33,40 |            65,50 |
+  SilentPirate82 | RANQUEADO |          34,10 |            64,20 |
+    SneakyRobot9 | RANQUEADO |          25,70 |            64,10 |
+   MightyViper15 | RANQUEADO |          24,50 |            63,80 |
+   SneakyTiger33 | RANQUEADO |          21,70 |            63,70 |
+   LunarKnight65 |   REGULAR |          22,50 |            63,10 |
+  CrimsonRobot82 | RANQUEADO |          34,20 |            62,70 |
+    WildWizard67 | RANQUEADO |          21,60 |            62,50 |
+  SneakyWizard38 | RANQUEADO |          25,00 |            62,00 |
+      IronTank12 | RANQUEADO |          23,90 |            60,90 |
+   SolarDragon71 | RANQUEADO |          29,60 |            60,60 |
+     ToxicTank15 | RANQUEADO |          31,50 |            60,50 |
+   SneakyViper52 | RANQUEADO |          33,30 |            60,00 |
+    WildPirate68 | RANQUEADO |          22,50 |            59,20 |
+   CrimsonTank33 | RANQUEADO |          35,20 |            58,70 |
+  GoldenWizard75 | RANQUEADO |          24,30 |            58,70 |
+     PixelTank22 | RANQUEADO |          29,10 |            57,90 |
+     RapidTank39 | RANQUEADO |          23,40 |            57,10 |
+   ToxicWizard51 | RANQUEADO |          32,50 |            57,00 |
+   PixelWizard67 | RANQUEADO |          30,20 |            56,30 |
+       NeonFox53 | RANQUEADO |          22,40 |            55,80 |
+Jogadores carregados pelo DAO: 150
+Semente: 42 | Treino: 120 | Teste: 30
+
+KNN: distância euclidiana com normalização min-max
+K= 1 | euclidiana | normalização=true  | 30/30 | 100.00%
+K= 3 | euclidiana | normalização=true  | 30/30 | 100.00%
+K= 5 | euclidiana | normalização=true  | 29/30 | 96.67%
+K= 7 | euclidiana | normalização=true  | 29/30 | 96.67%
+K= 9 | euclidiana | normalização=true  | 30/30 | 100.00%
+K=11 | euclidiana | normalização=true  | 29/30 | 96.67%
+
+Comparações com K = 5 (fixado antes da execução, sem escolher pelo teste)
+K= 5 | euclidiana | normalização=true  | 29/30 | 96.67%
+Matriz principal: linhas = real; colunas = previsto
+               CASUAL  REGULAR  RANQUEADO
+      CASUAL        9        0          0
+     REGULAR        0        5          0
+   RANQUEADO        0        1         15
+Jogadores classificados incorretamente (modelo principal):
+Jogador{id=130, apelido='CrimsonNinja12', horas=18.1, partidas=74, gasto=0.0, vitoria=56.8, perfil=RANQUEADO} -> previsto: REGULAR
+K= 5 | euclidiana | normalização=false | 26/30 | 86.67%
+K= 5 | manhattan  | normalização=true  | 28/30 | 93.33%
+K= 5 | manhattan  | normalização=false | 26/30 | 86.67%
+
+Jogador novo (horas, partidas, gasto, vitória): [15.0, 35.0, 80.0, 52.0]
+Perfil previsto: REGULAR
+Vizinhos usados na votação:
+75 | BraveTiger19 | REGULAR | distância=0.094064
+62 | BraveMage11 | REGULAR | distância=0.130997
+37 | PixelPanda84 | REGULAR | distância=0.137833
+122 | RogueMage82 | REGULAR | distância=0.146006
+88 | FrozenTiger92 | REGULAR | distância=0.147096
+
+Arquivos de resultados em: resultados/knn
+K-Means K=3 | min-max=true | semente=84 | inércia=10.554837 | pureza=80.00%
+K-Means K=3 | min-max=false | semente=84 | inércia=256433.191194 | pureza=52.67%
