@@ -16,43 +16,65 @@ public class ExperimentosKNN {
              PrintWriter previsoes = escritor(pasta.resolve("previsoes.csv"));
              PrintWriter erros = escritor(pasta.resolve("erros.csv"));
              PrintWriter matrizes = escritor(pasta.resolve("matrizes.csv"))) {
-            resumo.println("experimento;k;distancia;normalizacao;acertos;total;acuracia_percentual");
-            String cabecalho = "configuracao;id;apelido;perfil_real;perfil_previsto;horas_semana;"
-                    + "partidas_semana;gasto_mensal;taxa_vitoria";
-            previsoes.println(cabecalho);
-            erros.println(cabecalho);
-            matrizes.println("configuracao;perfil_real;CASUAL;REGULAR;RANQUEADO");
+            escreverCabecalhos(resumo, previsoes, erros, matrizes);
+            AvaliacaoKNN principal = avaliar(divisao, K_ESCOLHIDO, new DistanciaEuclidiana(), true);
+            testarValoresK(divisao, resumo, principal);
+            compararConfiguracoes(divisao, resumo, previsoes, erros, matrizes, principal);
+        }
+    }
 
-            System.out.println("\nKNN: distância euclidiana com normalização min-max");
-            for (int k : new int[] {1, 3, 5, 7, 9, 11}) {
-                AvaliacaoKNN resultado = avaliar(divisao, k, new DistanciaEuclidiana(), true);
-                registrarResumo(resumo, "variacao_k", k, "euclidiana", true, resultado);
-            }
+    private static void escreverCabecalhos(PrintWriter resumo, PrintWriter previsoes,
+                                           PrintWriter erros, PrintWriter matrizes) {
+        resumo.println("experimento;k;distancia;normalizacao;acertos;total;acuracia_percentual");
+        String cabecalho = "configuracao;id;apelido;perfil_real;perfil_previsto;horas_semana;"
+                + "partidas_semana;gasto_mensal;taxa_vitoria";
+        previsoes.println(cabecalho);
+        erros.println(cabecalho);
+        matrizes.println("configuracao;perfil_real;CASUAL;REGULAR;RANQUEADO");
+    }
 
-            System.out.println("\nComparações com K = " + K_ESCOLHIDO
-                    + " (fixado antes da execução, sem escolher pelo teste)");
-            MedidaDeDistancia[] medidas = {new DistanciaEuclidiana(), new DistanciaManhattan()};
-            String[] nomes = {"euclidiana", "manhattan"};
-            for (int i = 0; i < medidas.length; i++) {
-                for (boolean normalizar : new boolean[] {true, false}) {
-                    AvaliacaoKNN resultado = avaliar(divisao, K_ESCOLHIDO, medidas[i], normalizar);
-                    registrarResumo(resumo, "comparacao", K_ESCOLHIDO, nomes[i], normalizar, resultado);
-                    String configuracao = nomes[i] + (normalizar ? "_normalizada" : "_original");
-                    registrarPrevisoes(previsoes, configuracao, resultado.getPrevisoes());
-                    registrarPrevisoes(erros, configuracao, resultado.getErros());
-                    registrarMatriz(matrizes, configuracao, resultado.getMatrizConfusao());
-                    if (i == 0 && normalizar) {
-                        mostrarMatriz(resultado.getMatrizConfusao());
-                        System.out.println("Jogadores classificados incorretamente (modelo principal):");
-                        for (AvaliacaoKNN.Previsao erro : resultado.getErros()) {
-                            System.out.println(erro.getJogador() + " -> previsto: " + erro.getPerfilPrevisto());
-                        }
-                        if (resultado.getErros().isEmpty()) {
-                            System.out.println("Nenhum nesta divisão de teste.");
-                        }
-                    }
+    private static void testarValoresK(DivisaoDados divisao, PrintWriter resumo,
+                                       AvaliacaoKNN principal) {
+        System.out.println("\nKNN: distância euclidiana com normalização min-max");
+        for (int k : new int[] {1, 3, 5, 7, 9, 11}) {
+            AvaliacaoKNN resultado = k == K_ESCOLHIDO ? principal
+                    : avaliar(divisao, k, new DistanciaEuclidiana(), true);
+            registrarResumo(resumo, "variacao_k", k, "euclidiana", true, resultado);
+        }
+    }
+
+    private static void compararConfiguracoes(DivisaoDados divisao, PrintWriter resumo,
+                                               PrintWriter previsoes, PrintWriter erros,
+                                               PrintWriter matrizes, AvaliacaoKNN principal) {
+        System.out.println("\nComparações com K = " + K_ESCOLHIDO
+                + " (fixado antes da execução, sem escolher pelo teste)");
+        MedidaDeDistancia[] medidas = {new DistanciaEuclidiana(), new DistanciaManhattan()};
+        String[] nomes = {"euclidiana", "manhattan"};
+        for (int i = 0; i < medidas.length; i++) {
+            for (boolean normalizar : new boolean[] {true, false}) {
+                AvaliacaoKNN resultado = i == 0 && normalizar ? principal
+                        : avaliar(divisao, K_ESCOLHIDO, medidas[i], normalizar);
+                registrarResumo(resumo, "comparacao", K_ESCOLHIDO, nomes[i], normalizar, resultado);
+                String configuracao = nomes[i] + (normalizar ? "_normalizada" : "_original");
+                registrarPrevisoes(previsoes, configuracao, resultado.getPrevisoes());
+                registrarPrevisoes(erros, configuracao, resultado.getErros());
+                registrarMatriz(matrizes, configuracao, resultado.getMatrizConfusao());
+                if (i == 0 && normalizar) {
+                    mostrarMatriz(resultado.getMatrizConfusao());
+                    mostrarErros(resultado);
                 }
             }
+        }
+    }
+
+    private static void mostrarErros(AvaliacaoKNN resultado) {
+        List<AvaliacaoKNN.Previsao> erros = resultado.getErros();
+        System.out.println("Jogadores classificados incorretamente (modelo principal):");
+        for (AvaliacaoKNN.Previsao erro : erros) {
+            System.out.println(erro.getJogador() + " -> previsto: " + erro.getPerfilPrevisto());
+        }
+        if (erros.isEmpty()) {
+            System.out.println("Nenhum nesta divisão de teste.");
         }
     }
 

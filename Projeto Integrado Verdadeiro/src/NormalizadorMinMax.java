@@ -59,4 +59,18 @@ public class NormalizadorMinMax {
 
         return normalizadas;
     }
+
+    public double[] desnormalizar(double[] caracteristicas) {
+        if (mins == null || maxs == null) {
+            throw new IllegalStateException("Chame encontrarMinMax() primeiro.");
+        }
+        if (caracteristicas == null || caracteristicas.length != mins.length) {
+            throw new IllegalArgumentException("Características inválidas.");
+        }
+        double[] originais = new double[caracteristicas.length];
+        for (int i = 0; i < originais.length; i++) {
+            originais[i] = mins[i] + caracteristicas[i] * (maxs[i] - mins[i]);
+        }
+        return originais;
+    }
 }
