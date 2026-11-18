@@ -4,6 +4,9 @@
 *.mv.db
 *.trace.db
 *.log
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea/
 __pycache__/

@@ -1,0 +1,63 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TrabalhoFinal",
+            "cwd": "${workspaceFolder}/Projeto Integrado Verdadeiro",
+            "console": "internalConsole",
+            "vmArgs": "-Xmx128m -XX:ActiveProcessorCount=2 -Djava.awt.headless=true -Dfile.encoding=UTF-8",
+            "name": "Gravar: projeto completo",
+            "args": [
+                "todos"
+            ]
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TrabalhoFinal",
+            "cwd": "${workspaceFolder}/Projeto Integrado Verdadeiro",
+            "console": "internalConsole",
+            "vmArgs": "-Xmx128m -XX:ActiveProcessorCount=2 -Djava.awt.headless=true -Dfile.encoding=UTF-8",
+            "name": "Gravar: banco (Parte A)",
+            "args": [
+                "a"
+            ]
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TrabalhoFinal",
+            "cwd": "${workspaceFolder}/Projeto Integrado Verdadeiro",
+            "console": "internalConsole",
+            "vmArgs": "-Xmx128m -XX:ActiveProcessorCount=2 -Djava.awt.headless=true -Dfile.encoding=UTF-8",
+            "name": "Gravar: KNN (Partes B e E)",
+            "args": [
+                "b"
+            ]
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TrabalhoFinal",
+            "cwd": "${workspaceFolder}/Projeto Integrado Verdadeiro",
+            "console": "internalConsole",
+            "vmArgs": "-Xmx128m -XX:ActiveProcessorCount=2 -Djava.awt.headless=true -Dfile.encoding=UTF-8",
+            "name": "Gravar: K-Means (Parte C)",
+            "args": [
+                "c"
+            ]
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TestesProjeto",
+            "cwd": "${workspaceFolder}/Projeto Integrado Verdadeiro",
+            "console": "internalConsole",
+            "vmArgs": "-Xmx128m -XX:ActiveProcessorCount=2 -Djava.awt.headless=true -Dfile.encoding=UTF-8",
+            "name": "Testes: projeto integrado",
+            "args": []
+        }
+    ]
+}

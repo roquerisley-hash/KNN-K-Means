@@ -6,7 +6,15 @@ Projeto Java com 150 jogadores sintéticos em H2. O KNN prevê CASUAL, REGULAR o
 
 É necessário um **JDK 11 ou superior**, com `java` e `javac` no PATH. A compilação usa `--release 11`; a validação foi feita com o JDK disponível no ambiente. O driver **H2 2.4.240** já está em `Projeto Integrado Verdadeiro/lib`. Não precisa instalar um servidor de banco, Maven, Gradle ou bibliotecas de ML.
 
-No PowerShell, na raiz do repositório:
+Neste Windows, abra a raiz no VS Code e use o terminal integrado. O iniciador `.bat` evita o bloqueio de scripts do Windows PowerShell 5.1, sem alterar a política de execução:
+
+```powershell
+& '.\Projeto Integrado Verdadeiro\executar.bat' todos
+```
+
+Também é possível dar dois cliques em `Projeto Integrado Verdadeiro/executar.bat`: ele executa tudo e aguarda uma tecla ao terminar. Os modos são `todos`, `banco`, `knn`, `kmeans` e `testes`. Para outro jogador: `executar.bat knn 15 35 80 52`.
+
+O `.ps1` foi corrigido e validado no PowerShell 7. Se sua sessão permitir scripts, na raiz do repositório:
 
 ```powershell
 & '.\Projeto Integrado Verdadeiro\executar.ps1'
@@ -26,7 +34,15 @@ Ordem: horas por semana, partidas por semana (inteiro), gasto mensal em reais e 
 
 O script compila sequencialmente, usa até 256 MiB de heap no compilador e 128 MiB no programa, e informa dois processadores disponíveis à JVM. Não faz testes de estresse. O banco é criado em memória a partir do SQL em cada execução; nada é gravado em um servidor externo.
 
-### Compilar e executar manualmente
+As configurações portáveis de fontes, H2 e execução estão em `.vscode`. O botão **Gravar: projeto completo** foi preparado, mas sua execução pela interface ainda não foi verificada: o controle do computador recusou acesso ao VS Code. O comando `.bat` foi executado com sucesso no shell deste Windows. Veja [COMO_EXECUTAR_E_GRAVAR.md](COMO_EXECUTAR_E_GRAVAR.md) para os passos e [docs/VALIDACAO_LOCAL.md](docs/VALIDACAO_LOCAL.md) para a evidência e os limites da validação.
+
+## Apresentação e estudo
+
+- [Roteiro completo](ROTEIRO_APRESENTACAO.md): falas, arquivos e métodos reais, ações de tela, transições e checklist. Planejado para 7min45s por escolha do grupo; não foi encontrada duração oficial de vídeo nas fontes consultadas.
+- [Guias dos cinco integrantes](guias_integrantes): Samuel, Davi, Milena, Gustavo e Risley, cada um com explicação passo a passo, exemplo, oito perguntas respondidas e conceitos a dominar.
+- [Como executar e gravar](COMO_EXECUTAR_E_GRAVAR.md): caminho recomendado no Windows, alternativa Run preparada e recuperação de falhas.
+
+## Compilar e executar manualmente
 
 Dentro de `Projeto Integrado Verdadeiro`, no PowerShell:
 
