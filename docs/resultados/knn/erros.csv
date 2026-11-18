@@ -1,0 +1,12 @@
+configuracao;id;apelido;perfil_real;perfil_previsto;horas_semana;partidas_semana;gasto_mensal;taxa_vitoria
+euclidiana_normalizada;130;"CrimsonNinja12";RANQUEADO;REGULAR;18.10;74;0.00;56.80
+euclidiana_original;130;"CrimsonNinja12";RANQUEADO;REGULAR;18.10;74;0.00;56.80
+euclidiana_original;133;"LunarRobot97";RANQUEADO;REGULAR;33.40;56;33.73;65.50
+euclidiana_original;148;"PixelBandit99";CASUAL;REGULAR;4.40;14;153.51;33.30
+euclidiana_original;134;"SilentDragon3";CASUAL;REGULAR;2.90;15;158.46;43.50
+manhattan_normalizada;130;"CrimsonNinja12";RANQUEADO;REGULAR;18.10;74;0.00;56.80
+manhattan_normalizada;49;"SneakyWizard23";RANQUEADO;REGULAR;13.90;71;76.44;49.90
+manhattan_original;130;"CrimsonNinja12";RANQUEADO;REGULAR;18.10;74;0.00;56.80
+manhattan_original;133;"LunarRobot97";RANQUEADO;REGULAR;33.40;56;33.73;65.50
+manhattan_original;148;"PixelBandit99";CASUAL;REGULAR;4.40;14;153.51;33.30
+manhattan_original;134;"SilentDragon3";CASUAL;REGULAR;2.90;15;158.46;43.50

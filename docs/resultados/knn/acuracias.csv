@@ -1,0 +1,11 @@
+experimento;k;distancia;normalizacao;acertos;total;acuracia_percentual
+variacao_k;1;euclidiana;true;30;30;100.000000
+variacao_k;3;euclidiana;true;30;30;100.000000
+variacao_k;5;euclidiana;true;29;30;96.666667
+variacao_k;7;euclidiana;true;29;30;96.666667
+variacao_k;9;euclidiana;true;30;30;100.000000
+variacao_k;11;euclidiana;true;29;30;96.666667
+comparacao;5;euclidiana;true;29;30;96.666667
+comparacao;5;euclidiana;false;26;30;86.666667
+comparacao;5;manhattan;true;28;30;93.333333
+comparacao;5;manhattan;false;26;30;86.666667

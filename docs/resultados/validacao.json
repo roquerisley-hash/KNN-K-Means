@@ -1,0 +1,14 @@
+{
+  "testes_knn": 171,
+  "testes_kmeans": 797,
+  "inicializacoes_kmeans": 35,
+  "limite_iteracoes": 100,
+  "maior_iteracao_observada": 15,
+  "todas_inicializacoes_convergiram": true,
+  "csvs_knn_preservados": 5,
+  "csvs_kmeans_conferidos": "35 inicializacoes, 6 valores de K, 2 configuracoes de K=3, centroides, grupos, inercia e pureza",
+  "compilacao": "JDK, UTF-8, --release 11",
+  "recursos": "execucao sequencial; heap Java 128 MiB; compilador 256 MiB; ActiveProcessorCount=2",
+  "verificacao_independente": "Python padrao e SQLite, sem executar outra busca de K-Means",
+  "entrada_invalida": "partidas fracionarias rejeitadas antes de abrir o banco"
+}
