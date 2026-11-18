@@ -12,20 +12,24 @@ public class AppKNN {
         double[] novo = lerCaracteristicas(args);
         try (Connection conexao = BancoDados.abrir()) {
             List<Jogador> jogadores = carregarJogadores(conexao);
-            DivisaoDados divisao = new DivisaoDados(jogadores, SEMENTE);
-            System.out.println("Jogadores carregados pelo DAO: " + jogadores.size());
-            System.out.printf("Semente: %d | Treino: %d | Teste: %d%n", SEMENTE,
-                    divisao.getTreino().size(), divisao.getTeste().size());
-            ExperimentosKNN.executar(divisao, Path.of("resultados"));
-
-            KNN knn = new KNN(divisao.getTreino(), ExperimentosKNN.K_ESCOLHIDO,
-                    new DistanciaEuclidiana(), true);
-            mostrarClassificacao(knn, novo);
-            System.out.println("\nArquivos de resultados em: " + Path.of("resultados").toAbsolutePath());
+            executar(jogadores, novo, Path.of("resultados", "knn"));
         }
     }
 
-    private static double[] lerCaracteristicas(String[] args) {
+    public static void executar(List<Jogador> jogadores, double[] novo, Path pasta) throws Exception {
+        DivisaoDados divisao = new DivisaoDados(jogadores, SEMENTE);
+        System.out.println("Jogadores carregados pelo DAO: " + jogadores.size());
+        System.out.printf("Semente: %d | Treino: %d | Teste: %d%n", SEMENTE,
+                divisao.getTreino().size(), divisao.getTeste().size());
+        ExperimentosKNN.executar(divisao, pasta);
+
+        KNN knn = new KNN(divisao.getTreino(), ExperimentosKNN.K_ESCOLHIDO,
+                new DistanciaEuclidiana(), true);
+        mostrarClassificacao(knn, novo);
+        System.out.println("\nArquivos de resultados em: " + pasta.toAbsolutePath());
+    }
+
+    public static double[] lerCaracteristicas(String[] args) {
         double[] novo = {15.0, 35.0, 80.0, 52.0};
         if (args.length != 0 && args.length != 4) {
             throw new IllegalArgumentException("Use: AppKNN [horas partidas gasto taxa], com ponto decimal.");

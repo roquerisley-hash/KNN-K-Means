@@ -20,6 +20,7 @@ public class ExperimentosKNN {
             AvaliacaoKNN principal = avaliar(divisao, K_ESCOLHIDO, new DistanciaEuclidiana(), true);
             testarValoresK(divisao, resumo, principal);
             compararConfiguracoes(divisao, resumo, previsoes, erros, matrizes, principal);
+            salvarDistribuicaoErros(principal, pasta.resolve("distribuicao_erros.csv"));
         }
     }
 
@@ -133,6 +134,29 @@ public class ExperimentosKNN {
             }
             for (Jogador jogador : divisao.getTeste()) {
                 saida.printf("teste;%d;%s%n", jogador.getId(), jogador.getPerfil());
+            }
+        }
+    }
+
+    private static void salvarDistribuicaoErros(AvaliacaoKNN resultado, Path arquivo) throws IOException {
+        try (PrintWriter saida = escritor(arquivo)) {
+            saida.println("perfil_real;total_teste;acertos;erros;taxa_erro_percentual");
+            for (Perfil perfil : Perfil.values()) {
+                int total = 0;
+                int erros = 0;
+                for (AvaliacaoKNN.Previsao previsao : resultado.getPrevisoes()) {
+                    if (previsao.getJogador().getPerfil() == perfil) {
+                        total++;
+                        if (previsao.getPerfilPrevisto() != perfil) {
+                            erros++;
+                        }
+                    }
+                }
+                double taxa = total == 0 ? 0 : 100.0 * erros / total;
+                saida.printf(Locale.ROOT, "%s;%d;%d;%d;%.6f%n", perfil, total, total - erros, erros, taxa);
+            }
+            if (saida.checkError()) {
+                throw new IOException("Falha ao gravar a distribuição dos erros.");
             }
         }
     }
